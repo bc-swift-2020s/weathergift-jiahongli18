@@ -8,6 +8,12 @@
 
 import UIKit
 
+private let dateFormatter: DateFormatter = {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "EEEE, MMM d, h:mm: aaa"
+    return dateFormatter
+}()
+
 class LocationDetailViewController: UIViewController {
 
     @IBOutlet weak var dateLabel: UILabel!
@@ -18,6 +24,7 @@ class LocationDetailViewController: UIViewController {
     @IBOutlet weak var pageControl: UIPageControl!
     
     var locationIndex = 0
+    var weatherDetail: WeatherDetail!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,18 +34,20 @@ class LocationDetailViewController: UIViewController {
     func updateUserInterface() {
         let pageViewController = UIApplication.shared.windows.first!.rootViewController as! PageViewController
         let weatherLocation = pageViewController.weatherLocations[locationIndex]
-        let weatherDetail = WeatherDetail(name: weatherLocation.name, latitude: weatherLocation.latitude, longitude: weatherLocation.longitude)
+        weatherDetail = WeatherDetail(name: weatherLocation.name, latitude: weatherLocation.latitude, longitude: weatherLocation.longitude)
             
         pageControl.numberOfPages = pageViewController.weatherLocations.count
         pageControl.currentPage = locationIndex
         
         weatherDetail.getData {
             DispatchQueue.main.async {
-                self.dateLabel.text = weatherDetail.timezone
-                self.placeLabel.text = weatherDetail.name
-                self.temperatureLabel.text = "\(weatherDetail.temperature)°"
-                self.summaryLabel.text = weatherDetail.summary
-                self.imageView.image = UIImage(named: weatherDetail.dailyIcon)
+                dateFormatter.timeZone = TimeZone(identifier: self.weatherDetail.timezone)
+                let usableDate = Date(timeIntervalSince1970: self.weatherDetail.currentTime)
+                self.dateLabel.text = dateFormatter.string(from: usableDate)
+                self.placeLabel.text = self.weatherDetail.name
+                self.temperatureLabel.text = "\(self.weatherDetail.temperature)°"
+                self.summaryLabel.text = self.weatherDetail.summary
+                self.imageView.image = UIImage(named: self.weatherDetail.dailyIcon)
             }
         }
     }
