@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -92,24 +93,152 @@
                                     <constraint firstAttribute="height" constant="225" id="aVc-Vo-Qed"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7R0-VC-pp5">
+                                <rect key="frame" x="0.0" y="308" width="320" height="216"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="80" id="aYo-CC-cak" customClass="DailyTableViewCell" customModule="Weather_Gift" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aYo-CC-cak" id="0e1-Zp-wyS">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rain" translatesAutoresizingMaskIntoConstraints="NO" id="agI-5k-JIN">
+                                                    <rect key="frame" x="15" y="5" width="70" height="70"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bloomsday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Srt-Rg-bU3">
+                                                    <rect key="frame" x="93" y="5" width="114" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="22"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="188°" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBp-8F-iBR">
+                                                    <rect key="frame" x="255" y="5" width="50" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="22"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Rain, rain, go away. Come back another day!" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dp3-eZ-sh1">
+                                                    <rect key="frame" x="93" y="33" width="160" height="47"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-88°" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJo-iC-IXk">
+                                                    <rect key="frame" x="271" y="33" width="34" height="25"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dailyHighLabel" destination="iBp-8F-iBR" id="5k4-0I-zN1"/>
+                                            <outlet property="dailyImageView" destination="agI-5k-JIN" id="PWt-ty-IIP"/>
+                                            <outlet property="dailyLowLabel" destination="SJo-iC-IXk" id="T0B-w9-UAb"/>
+                                            <outlet property="dailySummaryView" destination="Dp3-eZ-sh1" id="DFk-p7-yHm"/>
+                                            <outlet property="dailyWeekdayLabel" destination="Srt-Rg-bU3" id="hw0-EG-HN1"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Mh1-qg-F6B">
+                                <rect key="frame" x="0.0" y="230" width="320" height="70"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="iY3-0x-9D4"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="NMN-NA-fGj">
+                                    <size key="itemSize" width="70" height="70"/>
+                                    <size key="estimatedItemSize" width="70" height="70"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HourlyCell" id="LOO-2c-dfC" customClass="HourlyCollectionViewCell" customModule="Weather_Gift" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="uV2-Ha-AsL">
+                                            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="13PM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FeM-D0-KRD">
+                                                    <rect key="frame" x="7" y="0.0" width="43" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fqa-cM-M8b">
+                                                    <rect key="frame" x="49" y="28" width="21" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="10"/>
+                                                    <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kF4-vg-cwF">
+                                                    <rect key="frame" x="12" y="48" width="35" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cloudy" translatesAutoresizingMaskIntoConstraints="NO" id="Zez-Rk-pmW">
+                                                    <rect key="frame" x="14" y="20" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cloud.heavyrain" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Lim-kc-vzO">
+                                                    <rect key="frame" x="52" y="20" width="8" height="12"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </imageView>
+                                            </subviews>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="hourLabel" destination="FeM-D0-KRD" id="8Zk-ka-2oZ"/>
+                                            <outlet property="hourlyPrecipProbability" destination="Fqa-cM-M8b" id="Qnx-AE-L3L"/>
+                                            <outlet property="hourlyTemperature" destination="kF4-vg-cwF" id="LIi-M5-ND8"/>
+                                            <outlet property="iconImageView" destination="Zez-Rk-pmW" id="Cyz-vR-nWl"/>
+                                            <outlet property="raindropImageView" destination="Lim-kc-vzO" id="5z7-Wh-fyj"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="rDh-wj-oxg" firstAttribute="leading" secondItem="ThO-aP-f8v" secondAttribute="leading" id="6cg-O7-itm"/>
+                            <constraint firstItem="7R0-VC-pp5" firstAttribute="leading" secondItem="ThO-aP-f8v" secondAttribute="leading" id="Juo-cd-9Te"/>
+                            <constraint firstItem="Zdh-Zu-NYl" firstAttribute="top" secondItem="7R0-VC-pp5" secondAttribute="bottom" id="MRL-Cc-O05"/>
+                            <constraint firstItem="Mh1-qg-F6B" firstAttribute="top" secondItem="rDh-wj-oxg" secondAttribute="bottom" id="MYc-j4-ToF"/>
                             <constraint firstItem="Zdh-Zu-NYl" firstAttribute="leading" secondItem="ThO-aP-f8v" secondAttribute="leading" id="OPs-Dk-JTb"/>
+                            <constraint firstItem="ThO-aP-f8v" firstAttribute="trailing" secondItem="7R0-VC-pp5" secondAttribute="trailing" id="SMo-4a-TLi"/>
+                            <constraint firstItem="Mh1-qg-F6B" firstAttribute="trailing" secondItem="ThO-aP-f8v" secondAttribute="trailing" id="YMF-CA-r3f"/>
                             <constraint firstItem="ThO-aP-f8v" firstAttribute="trailing" secondItem="rDh-wj-oxg" secondAttribute="trailing" id="fJY-o4-2Ui"/>
+                            <constraint firstItem="Mh1-qg-F6B" firstAttribute="leading" secondItem="ThO-aP-f8v" secondAttribute="leading" id="gxp-rh-Nba"/>
                             <constraint firstItem="Zdh-Zu-NYl" firstAttribute="bottom" secondItem="ThO-aP-f8v" secondAttribute="bottom" id="myj-dC-6M0"/>
+                            <constraint firstItem="7R0-VC-pp5" firstAttribute="top" secondItem="Mh1-qg-F6B" secondAttribute="bottom" id="n1L-V8-eR4"/>
                             <constraint firstItem="rDh-wj-oxg" firstAttribute="top" secondItem="ThO-aP-f8v" secondAttribute="top" id="u0t-tJ-EOt"/>
                             <constraint firstItem="Zdh-Zu-NYl" firstAttribute="trailing" secondItem="ThO-aP-f8v" secondAttribute="trailing" id="ylH-UO-Ddh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ThO-aP-f8v"/>
                     </view>
                     <connections>
+                        <outlet property="collectionView" destination="Mh1-qg-F6B" id="JTb-25-nYu"/>
                         <outlet property="dateLabel" destination="FOu-uc-Qan" id="vhL-hn-fMf"/>
                         <outlet property="imageView" destination="oGs-mo-LZa" id="Rq1-ib-NIn"/>
                         <outlet property="pageControl" destination="zKy-Ak-tcS" id="uge-Dx-Gph"/>
                         <outlet property="placeLabel" destination="hoN-T7-8vv" id="bwl-RP-9ex"/>
                         <outlet property="summaryLabel" destination="etq-dD-Qy8" id="hHH-Io-wVJ"/>
+                        <outlet property="tableView" destination="7R0-VC-pp5" id="J8Q-Vt-URw"/>
                         <outlet property="temperatureLabel" destination="kQN-Zo-sCk" id="0um-H9-iRA"/>
                     </connections>
                 </viewController>
@@ -203,6 +332,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cloud.heavyrain" catalog="system" width="64" height="62"/>
+        <image name="cloudy" width="96" height="96"/>
         <image name="list.bullet" catalog="system" width="64" height="44"/>
+        <image name="rain" width="96" height="96"/>
     </resources>
 </document>
