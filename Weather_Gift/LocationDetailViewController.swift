@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 private let dateFormatter: DateFormatter = {
     let dateFormatter = DateFormatter()
@@ -25,17 +26,28 @@ class LocationDetailViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
+    
     var locationIndex = 0
     var weatherDetail: WeatherDetail!
+    var locationManager: CLLocationManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         clearUserInterface()
         
         tableView.delegate = self
         tableView.dataSource = self
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        if locationIndex == 0 {
+            getLocation()
+        }
         
         updateUserInterface()
     }
@@ -72,9 +84,11 @@ class LocationDetailViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destination = segue.destination as! LocationListViewController
-        let pageViewController = UIApplication.shared.windows.first!.rootViewController as! PageViewController
-        destination.weatherLocations = pageViewController.weatherLocations
+        if segue.identifier == "ShowList" {
+            let destination = segue.destination as! LocationListViewController
+            let pageViewController = UIApplication.shared.windows.first!.rootViewController as! PageViewController
+            destination.weatherLocations = pageViewController.weatherLocations
+        }
     }
     
     @IBAction func unwindFromLocationListViewController(segue: UIStoryboardSegue) {
@@ -129,4 +143,73 @@ extension LocationDetailViewController: UICollectionViewDataSource, UICollection
     }
     
     
+}
+
+extension LocationDetailViewController: CLLocationManagerDelegate {
+    func getLocation() {
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        handleAuthenticalStatus(status: status)
+    }
+    
+    func handleAuthenticalStatus(status: CLAuthorizationStatus) {
+        switch status {
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .restricted:
+            self.oneButtonAlert(title: "Location services denied", message: "Parental controls are restricting location use")
+        case .denied:
+            showAlertToPrivacySettings(title: "User has not authorized location services", message: "Select 'Settings' below to open device settings and enable location services for this app.")
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationManager.requestLocation()
+        @unknown default:
+            print("Unknown case of status")
+        }
+    }
+    
+    func showAlertToPrivacySettings(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else {
+            print("Something went wrong getting the UIApplication.openSettingsURLString")
+            return
+        }
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (value) in
+            UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(settingsAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("updating location")
+        
+        let currentLocation = locations.last ?? CLLocation()
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(currentLocation) { (placemarks, error) in
+            var locationName = ""
+            if placemarks != nil {
+                let placemark = placemarks?.last
+                locationName = placemark?.name ?? "Parts Unknown"
+            } else {
+                locationName = "Could not find location"
+            }
+            print("locationname = \(locationName)")
+           
+            
+            let pageViewController = UIApplication.shared.windows.first!.rootViewController as! PageViewController
+            pageViewController.weatherLocations[self.locationIndex].latitude = currentLocation.coordinate.latitude
+            pageViewController.weatherLocations[self.locationIndex].longitude = currentLocation.coordinate.longitude
+            pageViewController.weatherLocations[self.locationIndex].name = locationName
+            
+            self.updateUserInterface()
+        }
+    }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("failed to get device location")
+    }
 }
