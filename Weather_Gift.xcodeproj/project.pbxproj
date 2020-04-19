@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		A0236DEF2427048100697D3E /* LocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0236DEE2427048100697D3E /* LocationDetailViewController.swift */; };
 		A0236DF124270E5900697D3E /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0236DF024270E5900697D3E /* PageViewController.swift */; };
-		A08CE29B244CD8200057BC3C /* UIViewController+alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08CE29A244CD8200057BC3C /* UIViewController+alert.swift */; };
+		A03AB410244D020200CF4AB6 /* UIViewController+alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03AB40F244D020200CF4AB6 /* UIViewController+alert.swift */; };
 		A08CE29D244CF0F30057BC3C /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08CE29C244CF0F30057BC3C /* AboutViewController.swift */; };
 		A09057B5243274EE00B9849B /* DailyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09057B4243274EE00B9849B /* DailyTableViewCell.swift */; };
 		A09057B72432853D00B9849B /* HourlyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09057B62432853D00B9849B /* HourlyCollectionViewCell.swift */; };
@@ -30,7 +30,7 @@
 		98765849465A257A12D8908C /* Pods-Weather_Gift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather_Gift.debug.xcconfig"; path = "Target Support Files/Pods-Weather_Gift/Pods-Weather_Gift.debug.xcconfig"; sourceTree = "<group>"; };
 		A0236DEE2427048100697D3E /* LocationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewController.swift; sourceTree = "<group>"; };
 		A0236DF024270E5900697D3E /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
-		A08CE29A244CD8200057BC3C /* UIViewController+alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+alert.swift"; path = "../../ToDoList/ToDoList/UIViewController+alert.swift"; sourceTree = "<group>"; };
+		A03AB40F244D020200CF4AB6 /* UIViewController+alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+alert.swift"; sourceTree = "<group>"; };
 		A08CE29C244CF0F30057BC3C /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		A09057B4243274EE00B9849B /* DailyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTableViewCell.swift; sourceTree = "<group>"; };
 		A09057B62432853D00B9849B /* HourlyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -106,7 +106,7 @@
 				A08CE29C244CF0F30057BC3C /* AboutViewController.swift */,
 				A09057B4243274EE00B9849B /* DailyTableViewCell.swift */,
 				A09057B62432853D00B9849B /* HourlyCollectionViewCell.swift */,
-				A08CE29A244CD8200057BC3C /* UIViewController+alert.swift */,
+				A03AB40F244D020200CF4AB6 /* UIViewController+alert.swift */,
 				A0CAB48C2426E98A0091C1B2 /* Main.storyboard */,
 				A0CAB48F2426E98D0091C1B2 /* Assets.xcassets */,
 				A0CAB4912426E98D0091C1B2 /* LaunchScreen.storyboard */,
@@ -237,7 +237,7 @@
 				A0CAB49B2426ED1B0091C1B2 /* WeatherLocation.swift in Sources */,
 				A08CE29D244CF0F30057BC3C /* AboutViewController.swift in Sources */,
 				A0CAB4872426E98A0091C1B2 /* AppDelegate.swift in Sources */,
-				A08CE29B244CD8200057BC3C /* UIViewController+alert.swift in Sources */,
+				A03AB410244D020200CF4AB6 /* UIViewController+alert.swift in Sources */,
 				A0236DEF2427048100697D3E /* LocationDetailViewController.swift in Sources */,
 				A0CAB4892426E98A0091C1B2 /* SceneDelegate.swift in Sources */,
 				A09057B72432853D00B9849B /* HourlyCollectionViewCell.swift in Sources */,
